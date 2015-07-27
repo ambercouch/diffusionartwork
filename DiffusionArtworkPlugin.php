@@ -37,7 +37,7 @@ class DiffusionArtworkPlugin extends BasePlugin
     public function registerCpRoutes()
     {
         return array(
-            'diffusionartwork\/artwork\/new' => 'diffusionartwork/artwork/_edit',
+            'diffusionartwork\/new' => 'diffusionartwork/artwork/_edit',
             'diffusionartwork\/artwork\/(?P<artworkId>\d+)' => 'diffusionartwork/artwork/_edit',
         );
     }

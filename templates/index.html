@@ -1,0 +1,45 @@
+{% extends "_layouts/cp" %}
+{% set centered = true %}
+
+{% set artwork = craft.diffusionartwork.getAllArtwork %}
+{% set title = "Diffusion ArtWork"|t %}
+
+{% set content %}
+
+    <p id="noartwork"{% if artwork|length %} class="hidden"{% endif %}>
+        {{ "There is no current artwork added. Go on and add some."|t }}
+    </p>
+
+    {% if artwork|length %}
+        <table id="ingredients" class="data">
+            <thead>
+                <th scope="col">{{ "Name"|t }}</th>
+                <th class="thin"></th>
+            </thead>
+            <tbody>
+
+                {% for artwork in ingredients %}
+                    <tr data-id="{{ ingredient.id }}" data-name="{{ ingredient.name|t }}">
+                        <td><a href="{{ url('cocktailrecipes/ingredients/'~ingredient.id) }}">{{ ingredient.name }}</a></td>
+                        <td><a class="delete icon" title="{{ 'Delete'|t }}"></a></td>
+                    </tr>
+                {% endfor %}
+
+            </tbody>
+        </table>
+    {% endif %}
+
+    <div class="buttons">
+        <a href="{{ url('diffusionartwork/new') }}" class="btn add icon">{{ "New Awtwork"|t }}</a>
+    </div>
+
+{% endset %}
+
+{% set js %}
+    new Craft.AdminTable({
+        tableSelector: '#ingredients',
+        noObjectsSelector: '#noingredients',
+        deleteAction: 'cocktailRecipes/ingredients/deleteIngredient'
+    });
+{% endset %}
+{% includeJs js %}
