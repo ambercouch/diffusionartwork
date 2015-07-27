@@ -4,62 +4,66 @@
 
 {% if artworkId is not defined %}{% set artworkId = null %}{% endif %}
 {% if  artwork is not defined %}
-    {% if  artworkId %}
-        {% set  artwork = craft.diffusionArtwork.getArtworkById(artworkId) %}
-        {% if not artwork %}{% exit 404 %}{% endif %}
-    {% else %}
-        {% set artwork = null %}
-    {% endif %}
+  {% if  artworkId %}
+    {% set  artwork = craft.diffusionArtwork.getArtworkById(artworkId) %}
+    {% if not artwork %}{% exit 404 %}{% endif %}
+  {% else %}
+    {% set artwork = null %}
+  {% endif %}
 {% endif %}
 
 {% set title = artwork ? artwork.name : "New Artwork"|t %}
 
 {% set crumbs = [
-    { label: "Diffusion Artwork"|t, url: url('diffusionartwork') }
+{ label: "Diffusion Artwork"|t, url: url('diffusionartwork') }
 ] %}
 
 {% set content %}
 
-    <form method="post" action="" accept-charset="UTF-8">
-        <input type="hidden" name="action" value="diffusionartwork/saveArtwork" />
-        <input type="hidden" name="redirect" value="diffusionartwork" />
-        <input type="hidden" name="artworkId" value="{{ artworkId }}" />
+  <form method="post" action="" accept-charset="UTF-8">
+    <input type="hidden" name="action" value="diffusionartwork/saveArtwork"/>
+    <input type="hidden" name="redirect" value="diffusionartwork"/>
+    <input type="hidden" name="artworkId" value="{{ artworkId }}"/>
 
-        {{ forms.textField({
-            label: 'Artwork Name'|t,
-            required: true,
-            name: 'artwork[name]',
-            value: artwork ? artwork.name : null,
-            errors: artwork ? artwork.errors('name') : null,
-        }) }}
+    {{ forms.textField({
+      label: 'Artwork Name'|t,
+      required: true,
+      name: 'artwork[name]',
+      value: artwork ? artwork.name : null,
+      errors: artwork ? artwork.errors('name') : null,
+    }) }}
 
-        {{ forms.textField({
-            label: 'Artwork Image'|t,
-            required: true,
-            name: 'artwork[image]',
-            value: artwork ? artwork.image : null,
-            errors: artwork ? artwork.errors('image') : null,
-        }) }}
+    {{ forms.textField({
+      label: 'Artwork Image'|t,
+      required: true,
+      name: 'artwork[image]',
+      value: artwork ? artwork.image : null,
+      errors: artwork ? artwork.errors('image') : null,
+    }) }}
 
-        {{ forms.textField({
-            label: 'Artwork Audio'|t,
-            required: true,
-            name: 'artwork[audio]',
-            value: artwork ? artwork.audio : null,
-            errors: artwork ? artwork.errors('audio') : null,
-        }) }}
+    {{ forms.textField({
+      label: 'Artwork Audio'|t,
+      required: true,
+      name: 'artwork[audio]',
+      value: artwork ? artwork.audio : null,
+      errors: artwork ? artwork.errors('audio') : null,
+    }) }}
+    <div class="field">
+      <div class="heading">
+        <label class="required">Artwork Text</label>
+      </div>
+      {{ forms.textArea({
+        label: 'Artwork Text'|t,
+        required: true,
+        name: 'artwork[text]',
+        value: artwork ? artwork.audio : null,
+        errors: artwork ? artwork.errors('audio') : null,
+      }) }}
+    </div>
 
-        {{ forms.textArea({
-            label: 'Artwork Text'|t,
-            required: true,
-            name: 'artwork[audio]',
-            value: artwork ? artwork.audio : null,
-            errors: artwork ? artwork.errors('audio') : null,
-        }) }}
-
-        <div class="buttons">
-            <input type="submit" class="btn submit" value="{{ 'Save'|t }}">
-        </div>
-    </form>
+    <div class="buttons">
+      <input type="submit" class="btn submit" value="{{ 'Save'|t }}">
+    </div>
+  </form>
 
 {% endset %}
