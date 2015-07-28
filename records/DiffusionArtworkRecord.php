@@ -31,9 +31,9 @@ class DiffusionArtworkRecord extends BaseRecord
     {
         return array(
             'name' => array(AttributeType::String, 'required' => true, 'unique' => true),
-            'image' => array(AttributeType::String),
-            'audio' => array(AttributeType::String),
-            'text' => array(AttributeType::String),
+            'image' => array(AttributeType::String, 'required' => false,'maxLength' => 100),
+            'audio' => array(AttributeType::String, 'required' => false,'maxLength' => 100),
+            'text' => array(AttributeType::String, 'required' => false, 'maxLength' => 100),
         );
     }
 
@@ -43,11 +43,11 @@ class DiffusionArtworkRecord extends BaseRecord
 //     *
 //     * @return BaseRecord
 //     */
-//    public function create()
-//    {
-//        $class = get_class($this);
-//        $record = new $class();
-//
-//        return $record;
-//    }
+    public function create()
+    {
+        $class = get_class($this);
+        $record = new $class();
+
+        return $record;
+    }
 }

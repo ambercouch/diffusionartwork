@@ -38,7 +38,7 @@ class DiffusionArtworkPlugin extends BasePlugin
     {
         return array(
             'diffusionartwork\/new' => 'diffusionartwork/artwork/_edit',
-            'diffusionartwork\/artwork\/(?P<artworkId>\d+)' => 'diffusionartwork/artwork/_edit',
+            'diffusionartwork\/(?P<artworkId>\d+)' => 'diffusionartwork/artwork/_edit',
         );
     }
 

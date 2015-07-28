@@ -34,6 +34,8 @@ class DiffusionArtworkModel extends BaseModel
             'image'  => AttributeType::String,
             'audio'  => AttributeType::String,
             'text'  => AttributeType::String,
+            'dateCreated' => AttributeType::DateTime,
+            'dateUpdated' => AttributeType::DateTime
         );
     }
 }

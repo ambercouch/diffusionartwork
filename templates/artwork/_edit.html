@@ -21,7 +21,7 @@
 {% set content %}
 
   <form method="post" action="" accept-charset="UTF-8">
-    <input type="hidden" name="action" value="diffusionartwork/saveArtwork"/>
+    <input type="hidden" name="action" value="diffusionArtwork/saveArtwork"/>
     <input type="hidden" name="redirect" value="diffusionartwork"/>
     <input type="hidden" name="artworkId" value="{{ artworkId }}"/>
 
@@ -56,8 +56,8 @@
         label: 'Artwork Text'|t,
         required: true,
         name: 'artwork[text]',
-        value: artwork ? artwork.audio : null,
-        errors: artwork ? artwork.errors('audio') : null,
+        value: artwork ? artwork.text : null,
+        errors: artwork ? artwork.errors('text') : null,
       }) }}
     </div>
 

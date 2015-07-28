@@ -1,16 +1,16 @@
 {% extends "_layouts/cp" %}
 {% set centered = true %}
 
-{% set artwork = craft.diffusionartwork.getAllArtwork %}
+{% set artworks = craft.diffusionartwork.getAllArtwork %}
 {% set title = "Diffusion ArtWork"|t %}
 
 {% set content %}
 
-    <p id="noartwork"{% if artwork|length %} class="hidden"{% endif %}>
+    <p id="noartwork"{% if artworks|length %} class="hidden"{% endif %}>
         {{ "There is no current artwork added. Go on and add some."|t }}
     </p>
 
-    {% if artwork|length %}
+    {% if artworks|length %}
         <table id="ingredients" class="data">
             <thead>
                 <th scope="col">{{ "Name"|t }}</th>
@@ -18,9 +18,9 @@
             </thead>
             <tbody>
 
-                {% for artwork in ingredients %}
-                    <tr data-id="{{ ingredient.id }}" data-name="{{ ingredient.name|t }}">
-                        <td><a href="{{ url('cocktailrecipes/ingredients/'~ingredient.id) }}">{{ ingredient.name }}</a></td>
+                {% for artwork in artworks %}
+                    <tr data-id="{{ artwork.id }}" data-name="{{ artwork.name|t }}">
+                        <td><a href="{{ url('diffusionartwork/'~artwork.id) }}">{{ artwork.name }}</a></td>
                         <td><a class="delete icon" title="{{ 'Delete'|t }}"></a></td>
                     </tr>
                 {% endfor %}

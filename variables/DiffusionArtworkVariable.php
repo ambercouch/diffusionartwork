@@ -23,8 +23,8 @@ class diffusionArtworkVariable
      * @param  int   $id
      * @return mixed
      */
-//    public function getIngredientById($id)
-//    {
-//        return craft()->cocktailRecipes_ingredients->getIngredientById($id);
-//    }
+    public function getArtworkById($id)
+    {
+        return craft()->diffusionArtwork->getArtworkById($id);
+    }
 }
